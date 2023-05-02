@@ -2,13 +2,13 @@ package com.example.networking;
 
 public class Mountain {
     private String name;
-    private String id;
+    private String ID;
     private int meter;
 
 
     public Mountain(String name, String id, int meter) {
         this.name = name;
-        this.id = id;
+        this.ID = ID;
         this.meter = meter;
     }
 
@@ -16,8 +16,8 @@ public class Mountain {
         return name;
     }
 
-    public String getId(){
-        return id;
+    public String getID(){
+        return ID;
     }
     public int getMeter(){
         return meter;

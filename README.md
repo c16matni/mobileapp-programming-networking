@@ -1,42 +1,80 @@
 
 # Rapport
+jag började med att lägga till en recycelVeiw i activety_main.xml filen
+````
+<androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-**Skriv din rapport här!**
+````
+sedna gick jag vidare med att skapa min Arraylist med tillhörande klass 
+````
+ArrayList<Mountain> mList;
 
-_Du kan ta bort all text som finns sedan tidigare_.
-
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
-
-```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+public class Mountain {
+    private String name;
+    private String ID;
+    private int meter;
+    public Mountain(String name, String id, int meter) {
+        this.name = name;
+        this.ID = ID;
+        this.meter = meter;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getID(){
+        return ID;
+    }
+    public int getMeter(){
+        return meter;
     }
 }
-```
+````
+efter detta kom jag till till det största problemet att skapa RecyclerViewAdapter som jag inte hittade de filerna tilla och försökte skapa en själv från grunden
+detta gick sådär som man kanske kan förstå och jag krånglade en hel del med dett och gick under en tid vidare med att göra så appen hade tillgång till internet.
+och fixa andra saker så som JSON URlen och utöka min mountain class.
 
-Bilder läggs i samma mapp som markdown-filen.
+````
+<uses-permission android:name="android.permission.INTERNET" />
 
-![](android.png)
+ private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
+ 
+````
+efter detta med lite hjälp hitta jag tillslut sidan med RecyclerViewAdapter och annat och lykades där efter skapa den ordentligt och fixa de endringar som behövdes.
+sedan ochså skapa en ny xml fil för att han så listan syntes i appen.
 
-Läs gärna:
+````
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"/>
+
+</LinearLayout>
+
+````
+
+efter detta var det bara felsökandet kvar och och efter mycket om och men hitta jag tillslut varför den inte fick fram dtan i programmet 
+och det visade sig att jag hade glömt lägga till
+````
+app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+````
+
+efter det fungerade appen som den skulle.
+
+![](Screenshot_20230502_151157.png)
+
