@@ -1,5 +1,6 @@
 package com.example.networking;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -7,10 +8,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>  {
+    private List<Mountain> mountains;
+    private OnClickListener onClickListener;
+    private LayoutInflater layoutInflater;
+
     public RecyclerViewAdapter(MainActivity mainActivity, ArrayList<Mountain> mList, OnClickListener onClickListener) {
 
+        this.onClickListener = onClickListener;
+        this.layoutInflater = layoutInflater;
+        this.mountains = mountains;
     }
 
     @NonNull
